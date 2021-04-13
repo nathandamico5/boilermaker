@@ -1,8 +1,14 @@
 import React from "react";
+import { Login } from "./AuthForm";
 
 class Main extends React.Component {
   render() {
-    return <h1>App</h1>;
+    return (
+      <div>
+        <h1>Login</h1>
+        <Login />
+      </div>
+    );
   }
 }
 

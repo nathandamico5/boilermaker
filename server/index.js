@@ -3,6 +3,9 @@ const morgan = require("morgan");
 const path = require("path");
 const bodyparser = require("body-parser");
 
+const dotenv = require("dotenv");
+dotenv.config();
+
 // Initialize App
 const app = express();
 
@@ -29,8 +32,4 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500).send(err.message || "Internal server error.");
 });
 
-// Set App to listen at PORT
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`App Listening at http://localhost:${PORT}`);
-});
+module.exports = app;
