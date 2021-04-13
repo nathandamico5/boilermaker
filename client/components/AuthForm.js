@@ -5,7 +5,6 @@ import { authenticate } from "../redux/reducers/auth";
 const AuthForm = (props) => {
   const { name, displayName, handleSubmit, error } = props;
 
-  console.log("AuthForm Error: ", error);
   return (
     <div>
       <form onSubmit={handleSubmit} name={name}>
@@ -31,7 +30,6 @@ const AuthForm = (props) => {
 };
 
 const mapLogin = (state) => {
-  console.log("map login");
   return {
     name: "login",
     displayName: "Login",

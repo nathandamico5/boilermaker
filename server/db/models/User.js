@@ -2,7 +2,6 @@ const Sequelize = require("sequelize");
 const db = require("../database");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-// const axios = require("axios");
 
 const SALT_ROUNDS = 5;
 
@@ -57,10 +56,8 @@ User.findByToken = async function (token) {
   }
 };
 
-const hashPassword = async (user) => {
-  if (user.changed("password")) {
-    user.password = await bcrypt.hash(user.password, SALT_ROUNDS);
-  }
-};
+User.beforeSave(async (user) => {
+  user.password = await bcrypt.hash(user.password, SALT_ROUNDS);
+});
 
 module.exports = User;
