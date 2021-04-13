@@ -9,7 +9,7 @@ const app = express();
 // Middleware
 app.use(morgan("dev"));
 
-app.use(express.static(path.join(__dirname, "/public/index.html")));
+app.use(express.static(path.join(__dirname, "../public")));
 
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
@@ -23,16 +23,14 @@ app.get("*", (req, res) => {
 });
 
 // 500 Error Handling
-app.use((error, req, res, next) => {
-  console.error(error);
-  console.error(error.stack);
-  res
-    .status(error.status || 500)
-    .send(error.message || "Internal server error.");
+app.use((err, req, res, next) => {
+  console.error(err);
+  console.error(err.stack);
+  res.status(err.status || 500).send(err.message || "Internal server error.");
 });
 
 // Set App to listen at PORT
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`App Listening at http://localhost:${PORT}`);
 });
